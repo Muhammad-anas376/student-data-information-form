@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+    <h2>Student registration form</h2>
+    <input placeholder="Enter your name" id="name">
+    <input placeholder="Enter your age" id="age" >
+    <input placeholder="Enter your class" id="class" >
+    <input placeholder="Enter your subject" id="subject" >
+    <input placeholder="Enter your marks" id="marks" >
+    <button onclick="save()">save your data</button>
+    
+    </div>
+
+    <script>
+
+let students = [];
+
+function save() {
+
+    let student = {
+        name: document.getElementById("name").value,
+        age: document.getElementById("age").value,
+        class: document.getElementById("class").value,
+        subject: document.getElementById("subject").value,
+        marks: document.getElementById("marks").value
+    };
+
+    students.push(student);
+
+    let file = new Blob(
+        [JSON.stringify(students, null, 4)],
+        { type: "application/json" }
+    );
+
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(file);
+    link.download = "students.json";
+    link.click();
+
+}
+
+</script>
+</body>
+</head>
